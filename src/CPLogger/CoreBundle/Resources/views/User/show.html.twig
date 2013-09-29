@@ -1,0 +1,53 @@
+{% extends 'CPLoggerCoreBundle::layouts/default.html.twig' %}
+
+{% block body -%}
+    <div class="pull-right">
+        <a href="{{ path('users') }}" class="btn btn-default">Back to the list</a>
+        <a href="{{ path('users_edit', { 'id': entity.id }) }}" class="btn btn-primary">Edit</a>
+    
+        <form action="{{ path('users_delete', { 'id': entity.id }) }}" method="post" class="form-button" role="form">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
+    <div class="page-header">
+        <h1>User</h1>
+    </div>
+
+    <table class="record_properties table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            {% if entity.apiId %}
+                <tr>
+                    <th>Api ID</th>
+                    <td>{{ entity.apiId }}</td>
+                </tr>
+                <tr>
+                    <th>Api Key</th>
+                    <td>
+                        {% if app.request.query.get('showKey') %}
+                            {{ entity.apiKey }}
+                        {% else %}
+                            <a href="{{ path('users_show', { 'id': entity.id, 'showKey':1 }) }}">Show Key</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><a href="{{ path('user_generate_api', { 'id': entity.id })}}" class="btn btn-primary">Generate Api</a></td>
+                </td>
+            {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}

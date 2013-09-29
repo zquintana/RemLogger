@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}CPLogger{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ asset('bundles/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('bundles/cplogger/css/main.css') }}" rel="stylesheet" media="screen" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+      <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="{{ asset('bundles/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {{ include("CPLoggerCoreBundle::shared/navbar.html.twig") }}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+          {{ include('CPLoggerCoreBundle::shared/flash-messages.html.twig') }}
+          {% block body %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    {{ include('CPLoggerCoreBundle::shared/navbar-bottom.html.twig') }}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">RemLog</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    {% if app.session.get('user_id') %}
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/log">Log</a></li>
+        <li><a href="/users">Users</a></li>
+      </ul>
+    {% endif %}
+    <ul class="nav navbar-nav navbar-right">
+      {% if app.session.get('user_id') %}
+        <li><a href="/signout">Log Out</a></li>
+      {% endif %}
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>

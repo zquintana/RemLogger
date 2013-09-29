@@ -1,0 +1,32 @@
+{% extends 'CPLoggerCoreBundle::layouts/default.html.twig' %}
+
+{% block body -%}
+    {{ include('CPLoggerCoreBundle::User/top-nav.html.twig') }}
+
+    <div class="page-header">
+        <h1>Users</h1>
+    </div>
+
+    <table class="records_list table table-hover">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Api ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.apiId }}</td>
+                <td>
+                    <a href="{{ path('users_show', { 'id': entity.id }) }}" class="btn btn-default">show</a>
+                    <a href="{{ path('users_edit', { 'id': entity.id }) }}" class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'CPLoggerCoreBundle::layouts/signin.html.twig' %}
+
+{% block body -%}
+    <div class="pull-right">
+        <form action="{{ path('users_delete', { 'id': entity.id }) }}" method="post" class="form-button">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    <div class="page-header">
+        <h1>User edit</h1>
+    </div>
+
+    <form action="{{ path('users_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="form-horizontal" role="form">
+        <input type="hidden" name="_method" value="PUT" />
+        <div class="form-group">
+            {{ form_label(edit_form.email, null, { "label_attr" : { "class": "col-lg-2 control-label" }}) }}
+            <div class="col-lg-10">
+                {{ form_widget(edit_form.email, { "attr" : { "class" : "form-control" }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.password, null, { "label_attr" : { "class": "col-lg-2 control-label" }}) }}
+            <div class="col-lg-10">
+                {{ form_widget(edit_form.password, { "attr" : { "class" : "form-control" }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.password_confirm, null, { "label_attr" : { "class": "col-lg-2 control-label" }}) }}
+            <div class="col-lg-10">
+                {{ form_widget(edit_form.password_confirm, { "attr" : { "class" : "form-control" }}) }}
+            </div>
+        </div>
+
+        {{ form_rest(edit_form) }}
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{{ path('users') }}" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

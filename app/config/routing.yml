@@ -1,0 +1,5 @@
+cp_logger_core:
+    resource: "@CPLoggerCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

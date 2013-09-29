@@ -1,0 +1,19 @@
+<html>
+<body>
+	<h1>RemLog - New Log</h1>
+	<table>
+		<tr>
+			<td>Event:</td>
+			<td>{{ entity.event }}</td>
+		</tr>
+		<tr>
+			<td>Message:</td>
+			<td>{{ entity.message }}</td>
+		</tr>
+		<tr>
+			<td>Details:</td>
+			<td>{{ entity.rawResponse | raw }}</td>
+		</tr>
+	</table>
+</body>
+</html>
